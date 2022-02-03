@@ -1,0 +1,88 @@
+:root {
+    --primary-color: #0D7AAC;
+    --background-color: #EEEEEE;
+    --box-color: #FFFFFB;
+    --secondary-color: #f2f2f2;
+    --elevation: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background-color);
+    font-family: sans-serif;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.grid {
+    width: 90%;
+    height: 90%;
+    display: grid;
+    grid-template-columns: 70% auto;
+    gap: 1rem;
+}
+
+.box {
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--box-color);
+    box-shadow: var(--elevation);
+}
+
+.logo-container {
+    position: fixed;
+    background-image: url("../assets/logo.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    aspect-ratio: 1;
+    top: 0;
+    left: 0;
+    height: 7vh;
+    margin: 0.5rem;
+    animation: spin 10s infinite linear;
+}
+
+.route-container {
+    grid-column: 1;
+}
+
+.weather-container {
+    grid-column: 2 ;
+}
+
+@keyframes spin{
+    0% {
+        transform: rotateY(0);
+    }
+
+    10% {
+        transform: rotateY(180deg);
+    }
+
+    20% {
+        transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(0deg);
+    }
+}
+
