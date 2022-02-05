@@ -7,6 +7,67 @@
 // //Adds navigation controls: zooming in/out
 // map.addControl(new  mapboxgl.NavigationControl());
 
+function sortBy(key, data) {
+	return data.sort((a, b) => {
+		var x = parseInt(a[key]); 
+		var y = parseInt(b[key]);
+		return ((y > x) ? -1 : ((y < x) ? 1 : 0));
+	});
+}
+
+function timeConvert(n) {
+    var num = n;
+    var hours = (num / 60);
+    var rhours = Math.floor(hours);
+    var minutes = (hours - rhours) * 60;
+    var rminutes = Math.round(minutes);
+    return rhours + " hrs " + rminutes
+    }
+
+
+
+async function fetchBusData(bool){
+
+    var now     = new Date(); 
+    var year    = now.getFullYear();
+    var month   = now.getMonth()+1; 
+    var day     = now.getDate();
+    var hour    = now.getHours();
+    var minute  = now.getMinutes();
+
+    if(month.toString().length == 1) {
+        month = '0'+month;
+   }
+   if(day.toString().length == 1) {
+        day = '0'+day;
+   }   
+   if(hour.toString().length == 1) {
+        hour = '0'+hour;
+   }
+   if(minute.toString().length == 1) {
+        minute = '0'+minute;
+   }
+
+   
+    if(bool){
+         url ="https://efa.sta.bz.it/web/XML_DM_REQUEST?sessionID=0&requestID=0&command=&useRealtime=1&coordOutputFormat=WGS84%5BDD.ddddd%5D&locationServerActive=1&mode=direct&useAllStops=1&depType=STOPEVENTS&includeCompleteStopSeq=1&calcOneDirection=1&dmLineSelectionAll=1&limit=10&itdDate="+year+""+ month+""+day+"&itdTime="+hour+""+minute+"&itdTripDateTimeDepArr=dep&ptOptionsActive=0&imparedOptionsActive=0&changeSpeed=normal&lineRestriction=400&maxChanges=9&routeType=leasttime&includedMeans=checkbox&inclMOT_BUS=true&inclMOT_ZUG=true&inclMOT_8=true&name_dm=66001143&type_dm=stop&language=de&outputFormat=JSON&outputEncoding=UTF-8"
+
+    }else{
+         url= "https://efa.sta.bz.it/web/XML_DM_REQUEST?sessionID=0&requestID=0&command=&useRealtime=1&coordOutputFormat=WGS84%5BDD.ddddd%5D&locationServerActive=1&mode=direct&useAllStops=1&depType=STOPEVENTS&includeCompleteStopSeq=1&calcOneDirection=1&dmLineSelectionAll=1&limit=5&itdDate="+year+""+ month+""+day+"&itdTime="+hour+""+minute+"&itdTripDateTimeDepArr=dep&ptOptionsActive=0&imparedOptionsActive=0&changeSpeed=normal&lineRestriction=400&maxChanges=9&routeType=leasttime&includedMeans=checkbox&inclMOT_ZUG=true&name_dm=66000998&type_dm=stop&language=de&outputFormat=JSON&outputEncoding=UTF-8"
+
+    }
+
+    const response = await fetch(url,{
+        method: "get",
+    })
+
+    data = await response.json();
+
+    return data.departureList;
+}
+
+
+
 async function fetchWeather(city){
     
     apiKey= "0b8c67b86e3c40c13e99b0e0a6a9e215";
@@ -37,7 +98,7 @@ function displayWeather(weatherdata){
     const { speed } = weatherdata.wind;
 
    
-    console.log(name);
+   
 
     locationlist[displayWeather.counter%6].innerText = "Wetter in " + name;
     iconlist[displayWeather.counter%6].src =
@@ -54,14 +115,70 @@ function displayWeather(weatherdata){
 }
 displayWeather.counter=0;
 
+
+async function getBusData(){
+    bus = await fetchBusData(true);
+
+    train = await fetchBusData(false);
+
+    busandtrain=[];
+
+    
+  
+
+   for(x of bus){
+    
+        if(x.dateTime.hour.length == 1) {
+            x.dateTime.hour = '0'+x.dateTime.hour;
+        }
+        if(x.dateTime.minute.length == 1) {
+            x.dateTime.minute = '0'+x.dateTime.minute;
+        }
+       
+       busandtrain.push([x.servingLine.direction,x.servingLine.number,x.dateTime.hour+":"+x.dateTime.minute, x.countdown,x.onwardStopSeq[0].ref.arrDelay]);
+   }
+
+   for(x of train){
+    if(x.dateTime.hour.length == 1) {
+        x.dateTime.hour = '0'+x.dateTime.hour;
+    }
+    if(x.dateTime.minute.length == 1) {
+        x.dateTime.minute = '0'+x.dateTime.minute;
+    }
+
+    busandtrain.push([x.servingLine.direction,x.servingLine.number.slice(0,8),x.dateTime.hour+":"+x.dateTime.minute, x.countdown,x.servingLine.delay]);  
+   }
+
+   busandtrain.sort(sortFunction);
+
+   for(x of busandtrain){
+
+    if(x[3]>60){
+        x[3]=timeConvert(x[3]);
+    }
+   }
+
+function sortFunction(a, b) {
+    if (Number(a[3]) == Number(b[3])) {
+        return 0;
+    }
+    else {
+        return (Number(a[3]) < Number(b[3])) ? -1 : 1;
+    }
+}
+
+   console.log(busandtrain);
+  
+};
+
 arr=["Brixen", "Sterzing", "Bozen", "Bruneck", "Klausen", "Brenner"];
 
-// setInterval(start,10000);
+setInterval(start,10000);
 
 async function start(){
     for(x of arr){
          await fetchWeather(x); 
-        
     }
+    getBusData();
 }
 
