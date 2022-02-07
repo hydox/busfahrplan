@@ -1,12 +1,3 @@
-// mapboxgl.accessToken = 'pk.eyJ1IjoiaHlkb3giLCJhIjoiY2t6MmRia2Y3MDRmeTJ1bnl3YWI3a2ZucSJ9.f7DQ8p_g9zDfSPr6-pAEPg';
-// const map = new mapboxgl.Map({
-//     container: 'map',
-//     style: 'mapbox://styles/hydox/ckz2duviv006415p1e0xl78ql',
-// });
-
-// //Adds navigation controls: zooming in/out
-// map.addControl(new  mapboxgl.NavigationControl());
-
 function sortBy(key, data) {
 	return data.sort((a, b) => {
 		var x = parseInt(a[key]); 
@@ -51,7 +42,6 @@ async function fetchBusData(bool){
    
     if(bool){
          url ="https://efa.sta.bz.it/web/XML_DM_REQUEST?sessionID=0&requestID=0&command=&useRealtime=1&coordOutputFormat=WGS84%5BDD.ddddd%5D&locationServerActive=1&mode=direct&useAllStops=1&depType=STOPEVENTS&includeCompleteStopSeq=1&calcOneDirection=1&dmLineSelectionAll=1&limit=15&itdDate="+year+""+ month+""+day+"&itdTime="+hour+""+minute+"&itdTripDateTimeDepArr=dep&ptOptionsActive=0&imparedOptionsActive=0&changeSpeed=normal&lineRestriction=400&maxChanges=9&routeType=leasttime&includedMeans=checkbox&inclMOT_BUS=true&inclMOT_ZUG=true&inclMOT_8=true&name_dm=66001143&type_dm=stop&language=de&outputFormat=JSON&outputEncoding=UTF-8"
-
     }else{
          url= "https://efa.sta.bz.it/web/XML_DM_REQUEST?sessionID=0&requestID=0&command=&useRealtime=1&coordOutputFormat=WGS84%5BDD.ddddd%5D&locationServerActive=1&mode=direct&useAllStops=1&depType=STOPEVENTS&includeCompleteStopSeq=1&calcOneDirection=1&dmLineSelectionAll=1&limit=3&itdDate="+year+""+ month+""+day+"&itdTime="+hour+""+minute+"&itdTripDateTimeDepArr=dep&ptOptionsActive=0&imparedOptionsActive=0&changeSpeed=normal&lineRestriction=400&maxChanges=9&routeType=leasttime&includedMeans=checkbox&inclMOT_ZUG=true&name_dm=66000998&type_dm=stop&language=de&outputFormat=JSON&outputEncoding=UTF-8"
 
@@ -84,11 +74,11 @@ async function fetchWeather(city){
 }
 
 const locationlist = document.querySelectorAll(".location");
-const iconlist = document.querySelectorAll(".icon");
+const iconlist = document.querySelectorAll(".icon > img");
 const desclist = document.querySelectorAll(".desc");
 const templist = document.querySelectorAll(".temp");
-const humiditylist = document.querySelectorAll(".humidity");
-const windlist = document.querySelectorAll(".wind-speed");
+const humiditylist = document.querySelectorAll(".humidity > p");
+const windlist = document.querySelectorAll(".wind > p");
 
 function displayWeather(weatherdata){
 
@@ -97,18 +87,16 @@ function displayWeather(weatherdata){
     const { temp, humidity } = weatherdata.main;
     const { speed } = weatherdata.wind;
 
-   
-   
 
-    locationlist[displayWeather.counter%6].innerText = "Wetter in " + name;
+    locationlist[displayWeather.counter%6].innerText = name;
     iconlist[displayWeather.counter%6].src =
       "https://openweathermap.org/img/wn/" + icon + ".png";
-   desclist[displayWeather.counter%6].innerText = description;
-    templist[displayWeather.counter%6].innerText = temp + "°C";
+    desclist[displayWeather.counter%6].innerText = description;
+    templist[displayWeather.counter%6].innerText = Math.round(Number.parseFloat(temp) * 10) / 10 + "°C";
     humiditylist[displayWeather.counter%6].innerText =
-      "Luftfeuchtigkeit " + humidity + "%";
+      humidity + "%";
     windlist[displayWeather.counter%6].innerText =
-      "Windgeschwindigkeit: " + speed + " km/h";
+      speed + " km/h";
 
       displayWeather.counter++;
 
@@ -174,9 +162,9 @@ function sortFunction(a, b) {
    console.log(busandtrain);
    console.log(busandtrainhistory);
 
-   if(busandtrain[0][0]!=busandtrainhistory[0][0]){
+    if(busandtrain[0][0]!=busandtrainhistory[0][0]){
         console.log("falsch");//falls array verändert wird 
-   }
+    }
 
    busandtrainhistory=[];
 
@@ -202,4 +190,3 @@ async function start(){
 start();
 
 setInterval(start,60000);
-

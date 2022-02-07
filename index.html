@@ -6,84 +6,275 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Südtiroler Busfahrplan</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/weather-anim.css">
+    <link rel="stylesheet" href="css/bus-schedule.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js" integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="js/main.js" defer></script>
+    <script src="js/anim.js" defer></script>
 </head>
 <body>
     <section class="grid">
         <div class="logo-container"></div>
         <div class="route-container box">
-            <h1>Abfahrt</h1>
-            <div class="fallmerayer">
-                <h2>Fallmerayer Haltestelle</h2>
-                <table>
-
-                </table>
+            <div class="hero-container">
+                <h2>Abfahrt von</h2>
+                <h1>Dantestraße und Bahnhof Brixen (Züge)</h1>
+                <div class="titles">
+                    <h2>Linie</h2>
+                    <h2>Ort</h2>
+                    <h2>Uhrzeit</h2>
+                    <h2>Abfahrt</h2>
+                </div>
             </div>
-            <div class="bahnhof-bx">
-                <h2>Bahnhof Brixen</h2>
+            <div class="schedule">
+                <div class="row">
+                    <div class="wrapper">
+                        <div class="line">320.1</div>
+                        <p>Brixen</p>
+                        <p>13.10</p>
+                        <p>2 min</p>
+                    </div>
+                    
+                    
+                </div>
+                <div class="row">
+                    <div class="wrapper">
+                        <div class="line">320.1</div>
+                        <p>Brixen</p>
+                        <p>13.10</p>
+                        <p>2 min</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="wrapper">
+                        <div class="line">320.1</div>
+                        <p>Brixen</p>
+                        <p>13.10</p>
+                        <p>2 min</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="wrapper">
+                        <div class="line">320.1</div>
+                        <p>Brixen</p>
+                        <p>13.10</p>
+                        <p>2 min</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="wrapper">
+                        <div class="line">320.1</div>
+                        <p>Brixen</p>
+                        <p>13.10</p>
+                        <p>2 min</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="wrapper">
+                        <div class="line">320.1</div>
+                        <p>Brixen</p>
+                        <p>13.10</p>
+                        <p>2 min</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="wrapper">
+                        <div class="line">320.1</div>
+                        <p>Brixen</p>
+                        <p>13.10</p>
+                        <p>2 min</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="wrapper">
+                        <div class="line">320.1</div>
+                        <p>Brixen</p>
+                        <p>13.10</p>
+                        <p>2 min</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="wrapper">
+                        <div class="line">320.1</div>
+                        <p>Brixen</p>
+                        <p>13.10</p>
+                        <p>2 min</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="wrapper">
+                        <div class="line">320.1</div>
+                        <p>Brixen</p>
+                        <p>13.10</p>
+                        <p>2 min</p>
+                    </div>
+                </div>
                 
             </div>
         </div>
-        <div class="weather-container box">
-            <div class="weather-box">
-                <h1 class="temp">30</h1>
-                <img class="icon"></img>
-                <p class="location">Brixen</p>
-                <p class="desc">Sonnig</p>
-                <img alt="Luftfeuchtigkeit" class="humidity-icon">
-                <p class="humidity"></p>
-                <p class="wind-speed"></p>
-                <img alt="Windgeschwindigkeit" class="wind-speed-icon">
+        <div class="weather-container box ">
+            <div class="weather-container-row">
+                <div class="weather-box">
+                    <h1 class="temp">30</h1>
+                    <div class="icon">
+                        <img alt="icon"></img>
+                    </div>
+                    <p class="desc">Sonnig</p>
+                
+                    
+                    <p class="location">Brixen<br>
+                        <span>Südtirol</span>
+                    </p>
+        
+                    <div class="humidity">
+                        <div class="info-desc">
+                            <img alt="lf" src="assets/icons/humidity.svg">
+                        </div>
+                        
+                        <p>17%</p>
+                    </div>
+                    <div class="wind">
+                        <div class="info-desc">
+                            <img alt="wg" src="assets/icons/wind-speed.svg">
+                        </div>
+                        <p>7km/h</p>
+                    </div>
+                    
+                    
+                </div>
+                <div class="weather-box">
+                    
+                    <h1 class="temp">30</h1>
+                    <div class="icon">
+                        <img alt="icon"></img>
+                    </div>
+                    <p class="desc">Sonnig</p>
+                
+                    
+                    <p class="location">Brixen<br>
+                        <span>Südtirol</span>
+                    </p>
+                    
+                    <div class="humidity">
+                        <div class="info-desc">
+                            <img alt="lf" src="assets/icons/humidity.svg">
+                        </div>
+                        <p>17%</p>
+                    </div>
+                    <div class="wind">
+                        <div class="info-desc">
+                            <img alt="wg" src="assets/icons/wind-speed.svg">
+                        </div>
+                        <p>7km/h</p>
+                    </div>
+                </div>
             </div>
-            <div class="weather-box">
-                <h1 class="temp">30</h1>
-                <img class="icon"></img>
-                <p class="location">Brixen</p>
-                <p class="desc">Sonnig</p>
-                <img alt="Luftfeuchtigkeit" class="humidity-icon">
-                <p class="humidity"></p>
-                <p class="wind-speed"></p>
-                <img alt="Windgeschwindigkeit" class="wind-speed-icon">
+            <div class="weather-container-row">
+                <div class="weather-box">
+                    
+                    <h1 class="temp">30</h1>
+                    <div class="icon">
+                        <img alt="icon"></img>
+                    </div>
+                    <p class="desc">Sonnig</p>
+                
+                    
+                    <p class="location">Brixen<br>
+                        <span>Südtirol</span>
+                    </p>
+                    
+                    <div class="humidity">
+                        <div class="info-desc">
+                            <img alt="lf" src="assets/icons/humidity.svg">
+                        </div>
+                        <p>17%</p>
+                    </div>
+                    <div class="wind">
+                        <div class="info-desc">
+                            <img alt="wg" src="assets/icons/wind-speed.svg">
+                        </div>
+                        
+                        <p>7km/h</p>
+                    </div>
+                </div>
+                <div class="weather-box">
+                    
+                    <h1 class="temp">30</h1>
+                    <div class="icon">
+                        <img alt="icon"></img>
+                    </div>
+                    <p class="desc">Sonnig</p>
+                    
+                    
+                    <p class="location">Brixen<br>
+                        <span>Südtirol</span>
+                    </p>
+                    
+                    <div class="humidity">
+                        <div class="info-desc">
+                            <img alt="lf" src="assets/icons/humidity.svg">
+                        </div>
+                        <p>17%</p>
+                    </div>
+                    <div class="wind">
+                        <div class="info-desc">
+                            <img alt="wg" src="assets/icons/wind-speed.svg">
+                        </div>
+                        <p>7km/h</p>
+                    </div>
+                </div>
             </div>
-            <div class="weather-box">
-                <h1 class="temp">30</h1>
-                <img class="icon"></img>
-                <p class="location">Brixen</p>
-                <p class="desc">Sonnig</p>
-                <img alt="Luftfeuchtigkeit" class="humidity-icon">
-                <p class="humidity"></p>
-                <p class="wind-speed"></p>
-                <img alt="Windgeschwindigkeit" class="wind-speed-icon">
-            </div>
-            <div class="weather-box">
-                <h1 class="temp">30</h1>
-                <img class="icon"></img>
-                <p class="location">Brixen</p>
-                <p class="desc">Sonnig</p>
-                <img alt="Luftfeuchtigkeit" class="humidity-icon">
-                <p class="humidity"></p>
-                <p class="wind-speed"></p>
-                <img alt="Windgeschwindigkeit" class="wind-speed-icon">
-            </div>
-            <div class="weather-box">
-                <h1 class="temp">30</h1>
-                <img class="icon"></img>
-                <p class="location">Brixen</p>
-                <p class="desc">Sonnig</p>
-                <img alt="Luftfeuchtigkeit" class="humidity-icon">
-                <p class="humidity"></p>
-                <p class="wind-speed"></p>
-                <img alt="Windgeschwindigkeit" class="wind-speed-icon">
-            </div>
-            <div class="weather-box">
-                <h1 class="temp">30</h1>
-                <img class="icon"></img>
-                <p class="location">Brixen</p>
-                <p class="desc">Sonnig</p>
-                <img alt="Luftfeuchtigkeit" class="humidity-icon">
-                <p class="humidity"></p>
-                <p class="wind-speed"></p>
-                <img alt="Windgeschwindigkeit" class="wind-speed-icon">
+            <div class="weather-container-row">
+                <div class="weather-box">
+                
+                    <h1 class="temp">30</h1>
+                    <div class="icon">
+                        <img alt="icon"></img>
+                    </div>
+                    <p class="desc">Sonnig</p>
+                
+                    
+                    <p class="location">Brixen<br>
+                        <span>Südtirol</span>
+                    </p>
+                    <div class="humidity">
+                        <div class="info-desc">
+                            <img alt="lf" src="assets/icons/humidity.svg">
+                        </div>
+                        <p>17%</p>
+                    </div>
+                    <div class="wind">
+                        <div class="info-desc">
+                            <img alt="wg" src="assets/icons/wind-speed.svg">
+                        </div>
+                        <p>7km/h</p>
+                    </div>
+                </div>
+                <div class="weather-box">
+                    
+                    <h1 class="temp">30</h1>
+                    <div class="icon">
+                        <img alt="icon" ></img>
+                    </div>
+                    <p class="desc">Sonnig</p>
+                
+                    
+                    <p class="location">Brixen<br>
+                        <span>Südtirol</span>
+                    </p>
+                    <div class="humidity">
+                        <div class="info-desc">
+                            <img alt="lf" src="assets/icons/humidity.svg">
+                        </div>
+                        <p>17%</p>
+                    </div>
+                    <div class="wind">
+                        <div class="info-desc">
+                            <img alt="wg" src="assets/icons/wind-speed.svg">
+                        </div>
+                        <p>7km/h</p>
+                    </div>
+                </div>
             </div>
         </div>
         

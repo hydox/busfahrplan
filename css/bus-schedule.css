@@ -1,0 +1,46 @@
+.route-container {
+    grid-column: 1;
+    padding: 2rem;
+    color: var(--font-color);
+}
+
+.hero-container {
+    background-color: var(--container-color);
+    border-radius: 1rem 1rem 0 0;
+    transform: translateY(1px);
+    z-index: -1;
+}
+
+.hero-container > h2 {
+    padding: 2rem 2rem 0 2rem;
+    font-weight: normal;
+    font-size: 1.125rem;
+    line-height: 1.5;
+}
+
+.hero-container > h1 {
+    padding: 0 2rem;
+    font-weight: bold;
+    font-size: 1.75rem;
+}
+
+.titles {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem 0 2rem;
+}
+
+.schedule {
+    margin-top: 2px;
+}
+
+.row {
+    background-color: var(--container-color);
+    width: 100%;
+}
+
+.wrapper {
+    padding: 0.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+}

@@ -1,0 +1,155 @@
+.weather-container {
+    padding: 1rem;
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.weather-container-row {
+    display: flex;
+    justify-content: space-evenly;
+    flex-grow: 1;
+    max-height: 100%;
+    max-width: 100%;
+    transition: all 500ms ease;
+    
+}
+
+.weather-box {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
+    margin: 0.7rem;
+    padding: 1rem;
+    max-height: 100%;
+    max-width: 100%;
+    color: var(--font-color);
+    background-color: var(--container-color);
+    opacity: 1;
+    border-radius: 1rem;
+    transition: all 500ms ease;
+}
+
+.temp {
+    font-size: 2.5vw;
+    text-align: center;
+    font-weight: bold;
+}
+
+.icon {
+    align-self: center;
+}
+
+.location {
+    padding-left: 1rem;
+    padding-bottom: 0.5rem;
+    font-size: 1.3vw;
+}
+
+.location span {
+    font-weight: normal;
+    font-size: 1.25rem;
+}
+
+.desc {
+    height: 0;
+    width: 0;
+    opacity: 0;
+}
+
+.humidity {
+    display: flex;
+    align-items: center;
+}
+
+.wind {
+    display: flex;
+    align-items: center;
+}
+
+.info-desc {
+    display: flex;
+    align-items: center;
+}
+
+.info-desc img {
+    width: 1.5rem;
+    padding: 0.5rem;
+}
+
+.collapse {
+    transform: scale(0);
+    flex-grow: 0;
+    max-height: 0;
+    max-width: 0;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+}
+
+.expand {
+    padding: 3rem;
+}
+
+.temp-expanded {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: 3vw;
+    text-align: start;
+    font-weight: bold;
+}
+
+.icon-expanded {
+    align-self: center;
+}
+
+.location-expanded {
+    padding-left: 1rem;
+    padding-bottom: 0.5rem;
+    font-size: 1.3vw;
+}
+
+.location-expanded span {
+    font-weight: normal;
+    font-size: 1.25rem;
+}
+
+.desc-expanded {
+    width: 100%;
+    opacity: 1;
+    text-align: center;
+}
+
+.humidity-expanded {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.humidity-expanded p{
+    font-size: 1vw;
+}
+
+.humidity-expanded img {
+    width: 1.1rem;
+    padding: 0.2rem 0.7rem;
+}
+
+.wind-expanded {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wind-expanded p{
+    font-size: 1vw;
+}
+
+.wind-expanded img {
+    width: 1.5rem;
+    padding: 0.5rem;
+}
