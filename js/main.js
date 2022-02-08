@@ -181,12 +181,32 @@ arr=["Brixen", "Sterzing", "Bozen", "Bruneck", "Klausen", "Brenner"];
 
 
 async function start(){
+
+
     for(x of arr){
          await fetchWeather(x); 
     }
     getBusData();
 }
 
+
+
+
+
+
 start();
 
-setInterval(start,60000);
+function init(){
+    var now     = new Date(); 
+    console.log(now.getSeconds());
+
+    if(now.getSeconds()==0){
+        start()
+    }
+
+}
+
+setInterval(init,1000);
+
+
+//setInterval(start,60000);
