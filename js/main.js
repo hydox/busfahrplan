@@ -168,10 +168,10 @@ function sortFunction(a, b) {
 }
 
 
-    const widths = ["100%", "94%", "88%", "82%", "76%", "70%"];
-
     if(busandtrain[0][0]!=busandtrainhistory[0][0]){
         console.log("falsch");//falls array verändert wird 
+    }else {
+
     }
 
    busandtrainhistory=[];
@@ -206,6 +206,8 @@ start();
 
 function init(){
     var now     = new Date(); 
+    //console.log(now.getSeconds());
+
     if(now.getSeconds()==0){
         start()
         setInterval(start,60000);
