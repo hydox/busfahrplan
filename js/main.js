@@ -41,9 +41,9 @@ async function fetchBusData(bool){
 
    
     if(bool){
-         url ="https://efa.sta.bz.it/web/XML_DM_REQUEST?sessionID=0&requestID=0&command=&useRealtime=1&coordOutputFormat=WGS84%5BDD.ddddd%5D&locationServerActive=1&mode=direct&useAllStops=1&depType=STOPEVENTS&includeCompleteStopSeq=1&calcOneDirection=1&dmLineSelectionAll=1&limit=15&itdDate="+year+""+ month+""+day+"&itdTime="+hour+""+minute+"&itdTripDateTimeDepArr=dep&ptOptionsActive=0&imparedOptionsActive=0&changeSpeed=normal&lineRestriction=400&maxChanges=9&routeType=leasttime&includedMeans=checkbox&inclMOT_BUS=true&inclMOT_ZUG=true&inclMOT_8=true&name_dm=66001143&type_dm=stop&language=de&outputFormat=JSON&outputEncoding=UTF-8"
+         url ="https://efa.sta.bz.it/web/XML_DM_REQUEST?sessionID=0&requestID=0&command=&useRealtime=1&coordOutputFormat=WGS84%5BDD.ddddd%5D&locationServerActive=1&mode=direct&useAllStops=1&depType=STOPEVENTS&includeCompleteStopSeq=1&calcOneDirection=1&dmLineSelectionAll=1&limit=8&itdDate="+year+""+ month+""+day+"&itdTime="+hour+""+minute+"&itdTripDateTimeDepArr=dep&ptOptionsActive=0&imparedOptionsActive=0&changeSpeed=normal&lineRestriction=400&maxChanges=9&routeType=leasttime&includedMeans=checkbox&inclMOT_BUS=true&inclMOT_ZUG=true&inclMOT_8=true&name_dm=66001143&type_dm=stop&language=de&outputFormat=JSON&outputEncoding=UTF-8"
     }else{
-         url= "https://efa.sta.bz.it/web/XML_DM_REQUEST?sessionID=0&requestID=0&command=&useRealtime=1&coordOutputFormat=WGS84%5BDD.ddddd%5D&locationServerActive=1&mode=direct&useAllStops=1&depType=STOPEVENTS&includeCompleteStopSeq=1&calcOneDirection=1&dmLineSelectionAll=1&limit=3&itdDate="+year+""+ month+""+day+"&itdTime="+hour+""+minute+"&itdTripDateTimeDepArr=dep&ptOptionsActive=0&imparedOptionsActive=0&changeSpeed=normal&lineRestriction=400&maxChanges=9&routeType=leasttime&includedMeans=checkbox&inclMOT_ZUG=true&name_dm=66000998&type_dm=stop&language=de&outputFormat=JSON&outputEncoding=UTF-8"
+         url= "https://efa.sta.bz.it/web/XML_DM_REQUEST?sessionID=0&requestID=0&command=&useRealtime=1&coordOutputFormat=WGS84%5BDD.ddddd%5D&locationServerActive=1&mode=direct&useAllStops=1&depType=STOPEVENTS&includeCompleteStopSeq=1&calcOneDirection=1&dmLineSelectionAll=1&limit=2&itdDate="+year+""+ month+""+day+"&itdTime="+hour+""+minute+"&itdTripDateTimeDepArr=dep&ptOptionsActive=0&imparedOptionsActive=0&changeSpeed=normal&lineRestriction=400&maxChanges=9&routeType=leasttime&includedMeans=checkbox&inclMOT_ZUG=true&name_dm=66000998&type_dm=stop&language=de&outputFormat=JSON&outputEncoding=UTF-8"
 
     }
 
@@ -103,6 +103,16 @@ function displayWeather(weatherdata){
 }
 displayWeather.counter=0;
 
+
+
+function displayBusData(){
+
+
+
+
+
+}
+
 busandtrainhistory=["test"];
 
 async function getBusData(){
@@ -110,8 +120,6 @@ async function getBusData(){
 
     train = await fetchBusData(false);
 
-    console.log(bus);
-    console.log(train);
 
     busandtrain=[];
     
@@ -159,8 +167,6 @@ function sortFunction(a, b) {
     }
 }
 
-   console.log(busandtrain);
-   console.log(busandtrainhistory);
 
     const widths = ["100%", "94%", "88%", "82%", "76%", "70%"];
 
@@ -173,6 +179,8 @@ function sortFunction(a, b) {
    for(x of busandtrain){
        busandtrainhistory.push(x);
    }
+
+   displayBusData(busandtrain);
 
 };
 
@@ -198,15 +206,15 @@ start();
 
 function init(){
     var now     = new Date(); 
-    console.log(now.getSeconds());
-
     if(now.getSeconds()==0){
         start()
+        setInterval(start,60000);
+        clearInterval(myInitTimer);
     }
 
 }
 
-setInterval(init,1000);
+myInitTimer = setInterval(init,1000);
 
 
-//setInterval(start,60000);
+
