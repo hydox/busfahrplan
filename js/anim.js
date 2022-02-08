@@ -44,7 +44,7 @@ async function startAnimation() {
     //Sleep animationLength * ratio -> show card animationLength * ratio;
     await new Promise(r => setTimeout(r, animationLength*ratio));
 
-    
+    /*
     for (let i = 0; i < boxes.length; i++) {
         if (i !== counter){
             boxes[i].classList.remove("collapse");
@@ -64,11 +64,11 @@ async function startAnimation() {
         if (i !== parseInt(counter/2)){
             rows[i].classList.remove("collapse");
         }
-    }
+    }*/
     
     counter = (counter+1) % 6;
 }
 
-//startAnimation();
+startAnimation();
 //setInterval(startAnimation, animationLength);
 

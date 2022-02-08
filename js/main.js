@@ -162,6 +162,8 @@ function sortFunction(a, b) {
    console.log(busandtrain);
    console.log(busandtrainhistory);
 
+    const widths = ["100%", "94%", "88%", "82%", "76%", "70%"];
+
     if(busandtrain[0][0]!=busandtrainhistory[0][0]){
         console.log("falsch");//falls array verändert wird 
     }
@@ -172,8 +174,6 @@ function sortFunction(a, b) {
        busandtrainhistory.push(x);
    }
 
-   
-  
 };
 
 arr=["Brixen", "Sterzing", "Bozen", "Bruneck", "Klausen", "Brenner"];
