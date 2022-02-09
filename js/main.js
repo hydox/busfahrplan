@@ -100,7 +100,7 @@ function displayWeather(weatherdata) {
 
   locationlist[displayWeather.counter % 6].innerText = name;
   iconlist[displayWeather.counter % 6].src =
-    "https://openweathermap.org/img/wn/" + icon + "@4x.png";
+    "../assets/weathericons/01d.svg";
   desclist[displayWeather.counter % 6].innerText = description;
   templist[displayWeather.counter % 6].innerText =
     Math.round(Number.parseFloat(temp) * 10) / 10 + "°C";
