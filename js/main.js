@@ -85,12 +85,22 @@ async function fetchWeather(city) {
   });
 }
 
+//Weather DOMElements
 const locationlist = document.querySelectorAll(".location");
 const iconlist = document.querySelectorAll(".icon > img");
 const desclist = document.querySelectorAll(".desc");
 const templist = document.querySelectorAll(".temp");
 const humiditylist = document.querySelectorAll(".humidity > p");
 const windlist = document.querySelectorAll(".wind > p");
+
+//Bus/Train Schedule DOMElements
+const schedule = document.querySelector(".schedule");
+const rowsSchedule = document.querySelectorAll(".row");
+const line = document.querySelectorAll(".line");
+const lineIcon = document.querySelectorAll(".line-icon");
+const direction = document.querySelectorAll(".direction");
+const time = document.querySelectorAll(".time");
+const countdown = document.querySelectorAll(".countdown");
 
 function displayWeather(weatherdata) {
   const { name } = weatherdata;
@@ -111,9 +121,26 @@ function displayWeather(weatherdata) {
 }
 displayWeather.counter = 0;
 
-function displayBusData() {}
+function displayBusData() {
+  for (let i = 0; i < busandtrain.length; i++) {
+    direction[i].innerHTML = busandtrain[i][0];
+    lineIcon[i].src = busandtrain[i][5] === "bus" ? "../assets/icons/bus.png" : "../assets/icons/bus.png";
+    line[i].innerHTML = busandtrain[i][1];
+    time[i].innerHTML = busandtrain[i][2];
+    countdown[i].innerHTML = busandtrain[i][3];
+  }
 
-busandtrainhistory = ["test"];
+  for (let i = 1; i <= 5; i++) {
+    rowsSchedule[i-1].classList.add("row" + i);
+  }
+}
+
+function changeBusUI(newData, changedRows){
+
+}
+
+let busandtrainhistory = ["fill"];
+let busandtrain = [];
 
 async function getBusData() {
   bus = await fetchBusData(true);
@@ -175,8 +202,23 @@ async function getBusData() {
   }
 
   if (busandtrain[0][0] != busandtrainhistory[0][0]) {
-    console.log("falsch"); //falls array verändert wird
-  } else {
+      console.log("falsch"); //falls array verändert wird
+      if (busandtrainhistory[0] === "fill") {
+        displayBusData(busandtrain);
+      }else {
+        const changedRows = [];
+        const newData = [];
+        for (let i=0; i<busandtrainhistory.length; i++){
+          const index = changedRows.length + i;
+          if (index >= busandtrain.length) break;
+
+          if (busandtrainhistory[i][0] !== busandtrain[index][0]){
+            changedRows.push(rowsSchedule[i]);
+            newData.push(busandtrainhistory[busandtrainhistory.length - 1 - i]);
+          }
+        }
+        changeBusUI(newdata, changedRows);
+      }
   }
 
   busandtrainhistory = [];
@@ -185,7 +227,7 @@ async function getBusData() {
     busandtrainhistory.push(x);
   }
 
-  displayBusData(busandtrain);
+  
 }
 
 arr = ["Brixen", "Sterzing", "Bozen", "Bruneck", "Klausen", "Brenner"];

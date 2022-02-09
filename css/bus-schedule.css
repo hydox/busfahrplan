@@ -27,8 +27,14 @@
 
 .titles {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
     padding: 1rem 2rem 2rem 2rem;
+    font-size: 0.7rem;
+}
+
+.titles > * {
+    flex: 1;
+    text-align: center;
 }
 
 .schedule {
@@ -41,6 +47,39 @@
 
 }
 
+.line-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0.7rem;
+
+}
+
+.line-icon {
+    padding-right: 0.5rem;
+    width: 1.5rem;
+    object-fit: cover;
+}
+
+.line { 
+    border-radius: 1rem;
+}
+
+.direction {
+    flex: 1;
+    text-align: center;
+}
+
+.time {
+    flex: 1;
+    text-align: center;
+}
+
+.countdown {
+    flex: 1;
+    text-align: end;
+}
+
 .row {
     flex-grow: 1;
     display: flex;
@@ -51,7 +90,7 @@
     transition: all 1000ms
 }
 
-/*  Row widths */
+/*  Row */
 .row:nth-of-type(1) {
     border-radius: 1rem;
     box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.5);
@@ -117,11 +156,11 @@
 .wrapper {
     flex-grow: 1;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     padding: 0.5rem 2rem;
 }
- .disappear {
+
+.disappear {
     transition: all 500ms, border-radius 0ms;
     transform: scale(0) 500ms ease;
     flex-grow: 0 !important;

@@ -163,24 +163,6 @@ const busplan = [
     ],
   ]
 
-const schedule = document.querySelector(".schedule");
-const rowsSchedule = document.querySelectorAll(".row");
-const line = document.querySelectorAll(".line");
-const direction = document.querySelectorAll(".direction");
-const time = document.querySelectorAll(".time");
-const countdown = document.querySelectorAll(".countdown");
-
-for (let i = 0; i < busplanhistory.length; i++) {
-  direction[i].innerHTML = busplanhistory[i][0];
-  line[i].innerHTML = busplanhistory[i][1];
-  time[i].innerHTML = busplanhistory[i][2];
-  countdown[i].innerHTML = busplanhistory[i][3];
-}
-
-for (let i = 1; i <= 5; i++) {
-  rowsSchedule[i-1].classList.add("row" + i);
-}
-
 async function onChange(){
   const changedRows = [rowsSchedule[0]];
   const newData = [busplan[9]];
@@ -208,6 +190,13 @@ function createRows(data){
     const wrapper = document.createElement("div");
     wrapper.classList.add("wrapper");
     
+    const lineContainer = document.createElement("div");
+    lineContainer.classList.add("line-container");
+
+    const lineIcon = document.createElement("img");
+    lineIcon.classList.add("line-icon");
+    lineIcon.src = dataRow[5] === "bus" ? "../assets/icons/bus.png" : "../assets/icons/bus.png";
+
     const line = document.createElement("div");
     line.classList.add("line");
     line.innerHTML = dataRow[1];
@@ -224,8 +213,9 @@ function createRows(data){
     countdown.classList.add("countdown");
     countdown.innerHTML = dataRow[3];
 
+    lineContainer.append(lineIcon, line);
     row.appendChild(wrapper);
-    wrapper.append(line, direction, time, countdown);
+    wrapper.append(lineContainer, direction, time, countdown);
     return row;
   });
 }
