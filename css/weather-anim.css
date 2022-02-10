@@ -51,6 +51,15 @@
     align-self: center;
 }
 
+.icon img{
+    position: relative;
+            display: block;
+            height: 120px;
+            width: 120px;
+            margin-bottom: 12px;
+			transition: inherit;
+}
+
 .location {
     padding-left: 1rem;
     padding-bottom: 0.5rem;
