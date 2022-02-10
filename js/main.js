@@ -43,7 +43,7 @@ async function fetchBusData(bool) {
       hour +
       "" +
       minute +
-      "&itdTripDateTimeDepArr=dep&ptOptionsActive=0&imparedOptionsActive=0&changeSpeed=normal&lineRestriction=400&maxChanges=9&routeType=leasttime&includedMeans=checkbox&inclMOT_BUS=true&inclMOT_ZUG=true&inclMOT_8=true&name_dm=66001143&type_dm=stop&language=de&outputFormat=JSON&outputEncoding=UTF-8";
+      "&itdTripDateTimeDepArr=dep&ptOptionsActive=0&imparedOptionsActive=0&changeSpeed=normal&lineRestriction=400&maxChanges=9&routeType=leasttime&includedMeans=checkbox&inclMOT_BUS=true&name_dm=66001143&type_dm=stop&language=de&outputFormat=JSON&outputEncoding=UTF-8";
   } else {
     url =
       "https://efa.sta.bz.it/web/XML_DM_REQUEST?sessionID=0&requestID=0&command=&useRealtime=1&coordOutputFormat=WGS84%5BDD.ddddd%5D&locationServerActive=1&mode=direct&useAllStops=1&depType=STOPEVENTS&includeCompleteStopSeq=1&calcOneDirection=1&dmLineSelectionAll=1&limit=2&itdDate=" +
