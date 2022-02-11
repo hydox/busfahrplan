@@ -7,7 +7,7 @@ function timeConvert(n) {
   var rhours = Math.floor(hours);
   var minutes = (hours - rhours) * 60;
   var rminutes = Math.round(minutes);
-  return rhours + " hrs " + rminutes;
+  return rhours + " hr " + rminutes;
 }
 
 async function fetchBusData(bool) {
