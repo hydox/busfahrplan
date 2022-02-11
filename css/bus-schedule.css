@@ -29,7 +29,7 @@
     display: flex;
     align-items: center;
     padding: 1rem 2rem 2rem 2rem;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
 }
 
 .titles > * {
@@ -92,7 +92,7 @@
     width: 85%;
     font-size: 0.9vw;
     background-color: var(--container-color);
-    transition: all 2000ms
+    transition: all 1000ms
 }
 
 /*  Row */
@@ -124,7 +124,7 @@
 
 .row:last-of-type{
     border-radius: 0 0 1rem 1rem;
-    transition: all 2000ms, border-radius 0ms;
+    transition: all 1000ms, border-radius 0ms;
 }
 
 .row5 {
@@ -186,8 +186,8 @@
 }
 
 .disappear {
-    transition: all 2000ms, border-radius 0ms;
-    transform: scale(0) 2000ms ease;
+    transition: all 1000ms, border-radius 0ms;
+    transform: scale(0) 1000ms ease;
     flex-grow: 0 !important;
     overflow: hidden;
     box-shadow: none !important;

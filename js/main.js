@@ -17,7 +17,7 @@ async function fetchBusData(bool) {
   var day = now.getDate();
   var hour = now.getHours();
   var minute = now.getMinutes();
-  minute = (minute-4) % 60;
+  minute = (minute-22) % 60;
 
   if (month.toString().length == 1) {
     month = "0" + month;
@@ -139,9 +139,10 @@ async function changeBusUI(newData, changedRows){
   changedRows.forEach(e => {
       e.classList.add("disappear");
   })
-  for (let i = changedRows.length; i <= 4+changedRows.length; i++) {
-      rowsSchedule[i].classList.add("row" + i-changedRows.length + 1);
-      rowsSchedule[i].classList.remove("row" + (i-changesRows.length + 2));
+  for (let i = changedRows.length; i < 5 + changedRows.length; i++) {
+      rowsSchedule[i].classList.add("row" + (i-changedRows.length + 1));
+      rowsSchedule[i].classList.remove("row" + (i+1));
+      console.log((i+1));
   }
   schedule.append(...newRows);
   await new Promise(r => setTimeout(r, 2000));
@@ -165,7 +166,7 @@ function createRows(data){
 
     const lineIcon = document.createElement("img");
     lineIcon.classList.add("line-icon");
-    lineIcon.src = dataRow[5] === "bus" ? "../assets/icons/bus.png" : "../assets/icons/bus.png";
+    lineIcon.src = dataRow[5] === "bus" ? "../assets/icons/bus.png" : "../assets/icons/train.png";
 
     const line = document.createElement("div");
     line.classList.add("line");
@@ -195,11 +196,10 @@ let busandtrainhistory = ["fill"];
 let busandtrain = [];
 
 async function getBusData() {
-  bus = await fetchBusData(true);
-  train = await fetchBusData(false);
+  const bus = await fetchBusData(true);
+  const train = await fetchBusData(false);
 
   busandtrain = [];
-
   for (x of bus) {
     if (x.dateTime.hour.length == 1) {
       x.dateTime.hour = "0" + x.dateTime.hour;
@@ -279,11 +279,9 @@ async function getBusData() {
           displayBusData(busandtrain);
           rowsSchedule[i-1].classList.add("row" + i);
         }
-      }
-      //displayBusData(busandtrain)
-      
+      } 
   }else{
-    displayBusData(busandtrain)
+    displayBusData(busandtrain);
   }
 
   busandtrainhistory = [];

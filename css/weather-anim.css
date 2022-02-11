@@ -42,7 +42,7 @@
 }
 
 .temp {
-    font-size: 2.5vw;
+    font-size: 2vw;
     text-align: center;
     font-weight: bold;
 }
@@ -53,11 +53,11 @@
 
 .icon img{
     position: relative;
-            display: block;
-            height: 120px;
-            width: 120px;
-            margin-bottom: 12px;
-			transition: inherit;
+    display: block;
+    height: 60px;
+    
+    margin-bottom: 12px;
+    transition: inherit;
 }
 
 .location {
@@ -115,18 +115,20 @@
 .temp-expanded {
     grid-column: 1;
     grid-row: 1;
-    font-size: 3vw;
+    font-size: 4vw;
     font-weight: bold;
 }
 
 .icon-expanded {
-    align-self: center;
+    height: 150px !important;
+    width: 150px !important;
 }
 
 .location-expanded {
-    padding-left: 1rem;
-    padding-bottom: 0.5rem;
-    font-size: 1.3vw;
+    padding: 0;
+    font-size: 1.7vw;
+    text-align: center;
+    font-weight: bold;
 }
 
 .location-expanded span {
@@ -138,6 +140,8 @@
     width: 100%;
     opacity: 1;
     text-align: center;
+    font-size: 1.5vw;
+    height: fit-content;
 }
 
 .humidity-expanded {
@@ -147,7 +151,7 @@
 }
 
 .humidity-expanded p{
-    font-size: 1vw;
+    font-size: 1.125vw;
 }
 
 .humidity-expanded img {
@@ -162,7 +166,7 @@
 }
 
 .wind-expanded p{
-    font-size: 1vw;
+    font-size: 1.125vw;
 }
 
 .wind-expanded img {

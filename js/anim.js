@@ -44,30 +44,30 @@ async function startAnimation() {
   //Sleep animationLength * ratio -> show card animationLength * ratio;
   await new Promise((r) => setTimeout(r, animationLength * ratio));
 
-  /*
-    for (let i = 0; i < boxes.length; i++) {
-        if (i !== counter){
-            boxes[i].classList.remove("collapse");
-        }else {
-            boxes[i].classList.remove("expand");
-            templist[i].classList.remove("temp-expanded");
-            iconlist[i].classList.remove("icon-expanded");
-            locationlist[i].classList.remove("location-expanded");
-            desclist[i].classList.remove("desc-expanded");
-            humidities[i].classList.remove("humidity-expanded");
-            infoDescs[i*2].removeChild(humidityDesc);
-            winds[i].classList.remove("wind-expanded");
-            infoDescs[i*2+1].removeChild(windDesc);
-        }
-    }
-    for (let i = 0; i < rows.length; i++) {
-        if (i !== parseInt(counter/2)){
-            rows[i].classList.remove("collapse");
-        }
-    }*/
+  
+  for (let i = 0; i < boxes.length; i++) {
+      if (i !== counter){
+          boxes[i].classList.remove("collapse");
+      }else {
+          boxes[i].classList.remove("expand");
+          templist[i].classList.remove("temp-expanded");
+          iconlist[i].classList.remove("icon-expanded");
+          locationlist[i].classList.remove("location-expanded");
+          desclist[i].classList.remove("desc-expanded");
+          humidities[i].classList.remove("humidity-expanded");
+          infoDescs[i*2].removeChild(humidityDesc);
+          winds[i].classList.remove("wind-expanded");
+          infoDescs[i*2+1].removeChild(windDesc);
+      }
+  }
+  for (let i = 0; i < rows.length; i++) {
+      if (i !== parseInt(counter/2)){
+          rows[i].classList.remove("collapse");
+      }
+  }
 
   counter = (counter + 1) % 6;
 }
 
 startAnimation();
-//setInterval(startAnimation, animationLength);
+setInterval(startAnimation, animationLength);
