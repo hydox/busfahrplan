@@ -17,6 +17,7 @@ async function fetchBusData(bool) {
   var day = now.getDate();
   var hour = now.getHours();
   var minute = now.getMinutes();
+  minute = (minute-4) % 60;
 
   if (month.toString().length == 1) {
     month = "0" + month;
@@ -129,14 +130,65 @@ function displayBusData() {
     time[i].innerHTML = busandtrain[i][2];
     countdown[i].innerHTML = busandtrain[i][3];
   }
-
-  for (let i = 1; i <= 5; i++) {
-    rowsSchedule[i-1].classList.add("row" + i);
-  }
 }
 
-function changeBusUI(newData, changedRows){
+async function changeBusUI(newData, changedRows){
+  const newRows = createRows(newData);
+  console.log("NewRows: " + newRows);
+  
+  changedRows.forEach(e => {
+      e.classList.add("disappear");
+  })
+  for (let i = changedRows.length; i <= 4+changedRows.length; i++) {
+      rowsSchedule[i].classList.add("row" + i-changedRows.length + 1);
+      rowsSchedule[i].classList.remove("row" + (i-changesRows.length + 2));
+  }
+  schedule.append(...newRows);
+  await new Promise(r => setTimeout(r, 2000));
+  changedRows.forEach(e => schedule.removeChild(e));
+}
 
+
+function createRows(data){
+  return data.map(dataRow => {
+    const row = document.createElement("div");
+    row.classList.add("row");
+
+    const wrapper = document.createElement("div");
+    wrapper.classList.add("wrapper");
+    
+    const lineContainer = document.createElement("div");
+    lineContainer.classList.add("line-container");
+
+    const lineWrapper = document.createElement("div");
+    lineWrapper.classList.add("line-wrapper");
+
+    const lineIcon = document.createElement("img");
+    lineIcon.classList.add("line-icon");
+    lineIcon.src = dataRow[5] === "bus" ? "../assets/icons/bus.png" : "../assets/icons/bus.png";
+
+    const line = document.createElement("div");
+    line.classList.add("line");
+    line.innerHTML = dataRow[1];
+
+    const direction = document.createElement("p");
+    direction.classList.add("direction");
+    direction.innerHTML = dataRow[0];
+
+    const time = document.createElement("p");
+    time.classList.add("time");
+    time.innerHTML = dataRow[2];
+
+    const countdown = document.createElement("p");
+    countdown.classList.add("countdown");
+    countdown.innerHTML = dataRow[3];
+
+    lineContainer.append(lineWrapper);
+    lineWrapper.append(lineIcon, line);
+    row.appendChild(wrapper);
+    wrapper.append(lineContainer, direction, time, countdown);
+    return row;
+  });
 }
 
 let busandtrainhistory = ["fill"];
@@ -144,7 +196,6 @@ let busandtrain = [];
 
 async function getBusData() {
   bus = await fetchBusData(true);
-
   train = await fetchBusData(false);
 
   busandtrain = [];
@@ -203,22 +254,36 @@ async function getBusData() {
 
   if (busandtrain[0][0] != busandtrainhistory[0][0]) {
       console.log("falsch"); //falls array verändert wird
-      if (busandtrainhistory[0] === "fill") {
-        displayBusData(busandtrain);
-      }else {
+      if (busandtrainhistory[0] !== "fill"){
         const changedRows = [];
         const newData = [];
-        for (let i=0; i<busandtrainhistory.length; i++){
-          const index = changedRows.length + i;
-          if (index >= busandtrain.length) break;
-
-          if (busandtrainhistory[i][0] !== busandtrain[index][0]){
-            changedRows.push(rowsSchedule[i]);
-            newData.push(busandtrainhistory[busandtrainhistory.length - 1 - i]);
-          }
+        for (let i=0; i<busandtrain.length; i++){
+            if (busandtrain[0][0] !== busandtrainhistory[i][0]){
+              changedRows.push(rowsSchedule[i]);
+              newData.push(busandtrain[busandtrain.length-i-1]);
+            }else {
+              break;
+            }
+            
         }
-        changeBusUI(newdata, changedRows);
+        newData.reverse();
+
+        console.log(busandtrainhistory);
+        console.log(busandtrain);
+        console.log(changedRows);
+        console.log(newData);
+        changeBusUI(newData, changedRows);
+        
+      }else {
+        for (let i = 1; i <= 5; i++) {
+          displayBusData(busandtrain);
+          rowsSchedule[i-1].classList.add("row" + i);
+        }
       }
+      //displayBusData(busandtrain)
+      
+  }else{
+    displayBusData(busandtrain)
   }
 
   busandtrainhistory = [];

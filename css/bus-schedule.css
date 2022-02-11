@@ -49,15 +49,20 @@
 
 .line-container {
     flex: 1;
+}
+
+.line-wrapper {
     display: flex;
     align-items: center;
     padding: 0.5rem 0.7rem;
-
+    border-radius: 1rem;
+    width: fit-content;
+    background-color: var(--primary-color);
 }
 
 .line-icon {
     padding-right: 0.5rem;
-    width: 1.5rem;
+    width: 1rem;
     object-fit: cover;
 }
 
@@ -87,7 +92,7 @@
     width: 85%;
     font-size: 0.9vw;
     background-color: var(--container-color);
-    transition: all 1000ms
+    transition: all 2000ms
 }
 
 /*  Row */
@@ -119,7 +124,7 @@
 
 .row:last-of-type{
     border-radius: 0 0 1rem 1rem;
-    transition: all 1000ms, border-radius 0ms;
+    transition: all 2000ms, border-radius 0ms;
 }
 
 .row5 {
@@ -128,10 +133,18 @@
     font-size: 1vw;
 }
 
+.row5 img {
+    width: 1.1rem;
+}
+
 .row4 {
     width: 91%;
     flex-grow: 1.4;
     font-size: 1.1vw;
+}
+
+.row4 img {
+    width: 1.2rem;
 }
 
 .row3 {
@@ -140,10 +153,18 @@
     font-size: 1.2vw;
 }
 
+.row3 img {
+    width: 1.3rem;
+}
+
 .row2 {
     width: 97%;
     flex-grow: 1.8;
     font-size: 1.3vw;
+}
+
+.row2 img {
+    width: 1.4rem;
 }
 
 .row1 {
@@ -151,6 +172,10 @@
     flex-grow: 2;
     width: 100%;
     font-size: 1.4vw;
+}
+
+.row1 img {
+    width: 1.5rem;
 }
 
 .wrapper {
@@ -161,8 +186,8 @@
 }
 
 .disappear {
-    transition: all 500ms, border-radius 0ms;
-    transform: scale(0) 500ms ease;
+    transition: all 2000ms, border-radius 0ms;
+    transform: scale(0) 2000ms ease;
     flex-grow: 0 !important;
     overflow: hidden;
     box-shadow: none !important;
