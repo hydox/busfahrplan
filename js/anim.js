@@ -3,7 +3,7 @@
 //TODO: search all pngs given by the api and replace them with the exact name
 //TODO: Add more information to expanded version and style it better
 
-const animationLength = 10000;
+const animationLength = 60000;
 const ratio = 0.3;
 
 const rows = document.querySelectorAll(".weather-container-row");

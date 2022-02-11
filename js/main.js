@@ -17,7 +17,6 @@ async function fetchBusData(bool) {
   var day = now.getDate();
   var hour = now.getHours();
   var minute = now.getMinutes();
-  minute = (minute-22) % 60;
 
   if (month.toString().length == 1) {
     month = "0" + month;
@@ -31,6 +30,8 @@ async function fetchBusData(bool) {
   if (minute.toString().length == 1) {
     minute = "0" + minute;
   }
+
+  document.querySelector("#time").innerText= hour+":"+minute;
 
   if (bool) {
     url =
@@ -111,7 +112,7 @@ function displayWeather(weatherdata) {
 
   locationlist[displayWeather.counter % 6].innerText = name;
   iconlist[displayWeather.counter % 6].src =
-    "../assets/weathericons/01d.svg";
+    "../assets/weathericons/"+icon+".svg";
   desclist[displayWeather.counter % 6].innerText = description;
   templist[displayWeather.counter % 6].innerText =
     Math.round(Number.parseFloat(temp) * 10) / 10 + "°C";
@@ -125,7 +126,7 @@ displayWeather.counter = 0;
 function displayBusData() {
   for (let i = 0; i < busandtrain.length; i++) {
     direction[i].innerHTML = busandtrain[i][0];
-    lineIcon[i].src = busandtrain[i][5] === "bus" ? "../assets/icons/bus.png" : "../assets/icons/bus.png";
+    lineIcon[i].src = busandtrain[i][5] === "bus" ? "../assets/icons/bus.png" : "../assets/icons/train.png";
     line[i].innerHTML = busandtrain[i][1];
     time[i].innerHTML = busandtrain[i][2];
     countdown[i].innerHTML = busandtrain[i][3];
@@ -134,7 +135,7 @@ function displayBusData() {
 
 async function changeBusUI(newData, changedRows){
   const newRows = createRows(newData);
-  console.log("NewRows: " + newRows);
+ 
   
   changedRows.forEach(e => {
       e.classList.add("disappear");
@@ -142,7 +143,7 @@ async function changeBusUI(newData, changedRows){
   for (let i = changedRows.length; i < 5 + changedRows.length; i++) {
       rowsSchedule[i].classList.add("row" + (i-changedRows.length + 1));
       rowsSchedule[i].classList.remove("row" + (i+1));
-      console.log((i+1));
+    
   }
   schedule.append(...newRows);
   await new Promise(r => setTimeout(r, 2000));
@@ -199,6 +200,9 @@ async function getBusData() {
   const bus = await fetchBusData(true);
   const train = await fetchBusData(false);
 
+ 
+  
+
   busandtrain = [];
   for (x of bus) {
     if (x.dateTime.hour.length == 1) {
@@ -252,8 +256,10 @@ async function getBusData() {
     }
   }
 
+  
+
+
   if (busandtrain[0][0] != busandtrainhistory[0][0]) {
-      console.log("falsch"); //falls array verändert wird
       if (busandtrainhistory[0] !== "fill"){
         const changedRows = [];
         const newData = [];
@@ -268,10 +274,7 @@ async function getBusData() {
         }
         newData.reverse();
 
-        console.log(busandtrainhistory);
-        console.log(busandtrain);
-        console.log(changedRows);
-        console.log(newData);
+       
         changeBusUI(newData, changedRows);
         
       }else {
